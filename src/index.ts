@@ -1,6 +1,6 @@
-// import { v4 as uuid4 } from "uuid"
+import { v4 as uuidV4 } from "uuid"
 
-// console.log(uuid4());
+console.log(uuidV4());
 
 const list = document.querySelector<HTMLUListElement>("#list")
 const form = document.getElementById("#new-task-form") as HTMLFormElement | null
@@ -12,5 +12,11 @@ form?.addEventListener("submit", e => {
 
   if (input?.value == "" || input?.value == null) return
 
+  const task = {
+    id: uuidV4(),
+    title: input.value,
+    completed: false,
+    createdAt: new Date(),
+  }
   input.value
 })
