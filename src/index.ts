@@ -1,21 +1,20 @@
 import { v4 as uuidV4 } from "uuid"
 
 type Task = {
+  parentNode: any
   id: string
   title: string
   completed: boolean
   createdAt: Date
 }
 
-console.log(uuidV4());
-
 const list = document.querySelector<HTMLUListElement>("#list")
 const form = document.getElementById("new-task-form") as HTMLFormElement | null
 const input = document.querySelector<HTMLInputElement>("#new-task-title")
+const clear = document.getElementById("clear") as HTMLButtonElement
 
-const tasks: Task[] = loadTasks()
+let tasks: Task[] = loadTasks()
 tasks.forEach(addListItem)
-
 
 form?.addEventListener("submit", e => {
   e.preventDefault()
@@ -47,6 +46,7 @@ function addListItem(task: Task) {
   label.append(checkbox, task.title)
   item.append(label)
   list?.append(item)
+  saveTasks()
 }
 
 function saveTasks() {
@@ -58,3 +58,27 @@ function loadTasks(): Task[] {
   if (taskJSON == null) return []
   return JSON.parse(taskJSON)
 }
+
+clear.addEventListener("click", (e) => {
+  e.preventDefault();
+  let tab = [];
+  console.log(tasks)
+
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].completed) {
+      tab.push(tasks[i].id)
+    }
+  }
+
+  for (let i = 0; i < tab.length; i++) {
+    for (let j = 0; j < tasks.length; j++) {
+      console.log(typeof tasks[j].id)
+      if (tab[i] === tasks[j].id) {
+        tasks.splice(j, 1)
+      }
+    }
+  }
+  saveTasks()
+  loadTasks()
+  location.reload()
+})
