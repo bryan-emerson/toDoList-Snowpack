@@ -5,7 +5,6 @@
   width: .25vw;
   margin-left: -35vw;
   list-style-type: none;
-
 }
 
 li {
@@ -17,20 +16,20 @@ li {
   padding-left: 10px;
 }
 
+li:hover {
+  box-shadow: 10px 12px 5px 5px rgba(0,0,0,0.24);
+}
+
 #container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: auto;
-  border: 1px solid green;
 }
 
 #container-two {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 body {
@@ -42,6 +41,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 35px;
   background-color: #5f7a7a;
+}
+
+button {
+  background-color: rgb(226, 236, 218);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  padding: 10px 10px;
+  margin-top: .5rem;
+  text-align: center;
+}
+
+button:hover {
+  box-shadow: 10px 12px 5px 5px rgba(0,0,0,0.24);
 }
 
 @media screen and (max-width: 480px) {
@@ -59,6 +72,6 @@ body {
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
